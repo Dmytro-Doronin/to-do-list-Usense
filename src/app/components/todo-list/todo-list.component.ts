@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {TodoComponent} from '../todo/todo.component';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
+import { TodoComponent } from '../todo/todo.component'
+import { TodoTypeWithPriority } from '../../types/todo.types'
 
 @Component({
   selector: 'app-todo-list',
@@ -8,4 +9,6 @@ import {TodoComponent} from '../todo/todo.component';
   styleUrl: './todo-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent {}
+export class TodoListComponent {
+  todos = input<TodoTypeWithPriority[]>()
+}

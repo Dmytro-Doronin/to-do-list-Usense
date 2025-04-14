@@ -1,0 +1,62 @@
+@use '../../styles/helpers' as *;
+
+.button {
+  padding: rem(10);
+  background-color: var(--color-accent-dark);
+  border: none;
+  color: var(--color-light-100);
+  border-radius: rem(10);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  font-size: rem(14);
+
+  &:hover {
+    background-color: var(--color-accent);
+    box-shadow: 0 0 rem(4) var(--color-accent);
+  }
+
+  &--main {
+    background-color: var(--color-accent-dark);
+
+    &:hover {
+      background-color: var(--color-accent);
+      box-shadow: 0 0 rem(4) var(--color-accent);
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: var(--color-dark-900);
+    border: rem(1) solid var(--color-accent-dark);
+
+    &:hover {
+      border: rem(1) solid var(--color-accent);
+      box-shadow: 0 0 rem(4) var(--color-accent);
+      background-color: transparent;
+    }
+  }
+
+  &--low-priority {
+    background-color: var(--color-success-500);
+    &:hover {
+      background-color: var(--color-success-300);
+      box-shadow: 0 0 rem(4) var(--color-success-300);
+    }
+  }
+
+  &--mid-priority {
+    background-color: var(--color-mid-500);
+    &:hover {
+      background-color: var(--color-mid-300);
+      box-shadow: 0 0 rem(4) var(--color-mid-300);
+    }
+  }
+  &--high-priority {
+    background-color: var(--color-danger-500);
+    &:hover {
+      background-color: var(--color-danger-300);
+      box-shadow: 0 0 rem(4) var(--color-danger-300);
+    }
+  }
+}

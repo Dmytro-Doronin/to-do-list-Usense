@@ -1,0 +1,16 @@
+@use '../../styles/helpers' as *;
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  gap: rem(15);
+  border: rem(1) solid var(--color-accent);
+  padding: rem(20);
+  border-radius: rem(10);
+  min-width: rem(200);
+
+  &__btn-group {
+    display: flex;
+    gap: rem(5);
+  }
+}

@@ -8,9 +8,14 @@
     border: rem(1) solid var(--color-accent);
     border-radius: rem(6);
     padding: rem(10);
-    background-color: var(--color-accent);
     color: var(--color-light-100);
     font-weight: 700;
+    background-color: var(--color-accent-dark);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--color-accent);
+      box-shadow: 0 0 rem(4) var(--color-accent);
+    }
 
     &:focus {
       outline: rem(2) solid var(--color-accent);

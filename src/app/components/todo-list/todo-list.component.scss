@@ -1,0 +1,7 @@
+@use '../../styles/helpers' as *;
+
+.todo-list {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 1fr);
+  gap: rem(20);
+}
