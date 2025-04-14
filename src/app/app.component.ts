@@ -1,6 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { ControlComponent } from './components/control/control.component'
 import { TodoListComponent } from './components/todo-list/todo-list.component'
+import { TodoStoreService } from './shared/services/todo-store.service'
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,10 @@ import { TodoListComponent } from './components/todo-list/todo-list.component'
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'todo-app'
+  todoStoreService = inject(TodoStoreService)
+  readonly todos = this.todoStoreService.allTodos
+
+  constructor() {
+    this.todoStoreService.loadAllTodos()
+  }
 }

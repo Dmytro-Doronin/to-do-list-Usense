@@ -1,10 +1,13 @@
 @if (todo(); as todo) {
   <div class="todo">
-    <app-checkbox [label]="todo.title"></app-checkbox>
-    <div class="todo__btn-group">
-      <app-button [variant]="todo.priority">Low</app-button>
-      <app-button>Mid</app-button>
-      <app-button>High</app-button>
+
+    <div class="todo__content">
+      <app-checkbox [label]="todo.title"></app-checkbox>
+      <div class="todo__btn-group">
+        <app-button [variant]="todo.priority === 'low' ? 'low' : 'transparent'">Low</app-button>
+        <app-button [variant]="todo.priority === 'mid' ? 'mid' : 'transparent'">Mid</app-button>
+        <app-button [variant]="todo.priority === 'high' ? 'high' : 'transparent'">High</app-button>
+      </div>
     </div>
   </div>
 }

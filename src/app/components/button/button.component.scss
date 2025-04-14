@@ -39,6 +39,7 @@
 
   &--low-priority {
     background-color: var(--color-success-500);
+    border: rem(1) solid var(--color-success-500);
     &:hover {
       background-color: var(--color-success-300);
       box-shadow: 0 0 rem(4) var(--color-success-300);
@@ -47,13 +48,16 @@
 
   &--mid-priority {
     background-color: var(--color-mid-500);
+    border: rem(1) solid var(--color-mid-500);
     &:hover {
       background-color: var(--color-mid-300);
       box-shadow: 0 0 rem(4) var(--color-mid-300);
     }
   }
+
   &--high-priority {
     background-color: var(--color-danger-500);
+    border: rem(1) solid var(--color-danger-500);
     &:hover {
       background-color: var(--color-danger-300);
       box-shadow: 0 0 rem(4) var(--color-danger-300);
