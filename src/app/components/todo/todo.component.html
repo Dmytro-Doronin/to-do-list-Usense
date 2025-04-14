@@ -1,8 +1,12 @@
 @if (todo(); as todo) {
   <div class="todo">
     <div class="todo__control">
-      <app-edit></app-edit>
-      <app-trash></app-trash>
+      <app-button [variant]="'invisible'">
+        <app-edit></app-edit>
+      </app-button>
+      <app-button [variant]="'invisible'">
+        <app-trash></app-trash>
+      </app-button>
     </div>
     <div class="todo__content">
       <app-checkbox [label]="todo.title"></app-checkbox>

@@ -8,7 +8,16 @@
           <app-todo-list [todos]="todos"></app-todo-list>
         }
       </div>
+
+      <app-button (click)="openModal(addTodo)" variant="round">
+        <app-plus></app-plus>
+      </app-button>
     </div>
   </div>
 </main>
 
+<ng-template #addTodo>
+  <div>Add todo</div>
+</ng-template>
+
+<app-modal></app-modal>

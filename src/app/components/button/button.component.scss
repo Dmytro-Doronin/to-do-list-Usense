@@ -66,4 +66,22 @@
       border: rem(1) solid var(--color-danger-300);
     }
   }
+
+  &--invisible {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+    }
+  }
+
+  &--round {
+    position: fixed;
+    right: 20%;
+    bottom: 10%;
+    border-radius: 50%;
+  }
 }

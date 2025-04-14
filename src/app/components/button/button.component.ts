@@ -9,12 +9,14 @@ import { NgClass } from '@angular/common'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  variant = input<'transparent' | 'low' | 'mid' | 'high'>('transparent')
+  variant = input<'transparent' | 'low' | 'mid' | 'high' | 'invisible' | 'round'>('transparent')
 
   buttonClassMap = computed(() => ({
     'button--transparent': this.variant() === 'transparent',
     'button--low-priority': this.variant() === 'low',
     'button--mid-priority': this.variant() === 'mid',
     'button--high-priority': this.variant() === 'high',
+    'button--invisible': this.variant() === 'invisible',
+    'button--round': this.variant() === 'round',
   }))
 }
