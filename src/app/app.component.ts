@@ -24,10 +24,15 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
 export class AppComponent {
   todoStoreService = inject(TodoStoreService)
   readonly todos = this.todoStoreService.allTodos
+  readonly todosLoading = this.todoStoreService.allTodos
   private readonly modalService = inject(ModalService)
 
   constructor() {
     this.todoStoreService.loadAllTodos()
+  }
+
+  onAddTodo(data: { title: string }) {
+    this.todoStoreService.addTodo(data.title)
   }
 
   openModal(template: TemplateRef<{ $implicit: null }>) {
