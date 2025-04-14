@@ -1,0 +1,12 @@
+@use '../../styles/helpers' as *;
+
+.control {
+  display: flex;
+  width: 100%;
+  column-gap: rem(10);
+  align-items: center;
+
+  app-text-field {
+    flex: 1;
+  }
+}

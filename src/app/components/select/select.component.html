@@ -1,0 +1,29 @@
+<div class="select">
+  <div class="select__wrapper" (click)="toggleDropdown()" tabindex="0" (keydown)="onKeyDownSelect($event)">
+    <div class="select__display">
+      {{ selectedLabel() }}
+      @if (isDropdownOpen()) {
+        <span class="arrow" [class.up]="isDropdownOpen()">&and;</span>
+      } @else {
+        <span class="arrow" [class.up]="isDropdownOpen()">&or;</span>
+      }
+    </div>
+
+    @if (isDropdownOpen()) {
+      <ul class="select__options">
+        @for (option of options; track option.id) {
+          <li
+            (click)="select(option.name)"
+            class="select__option"
+            tabindex="0"
+            (keydown)="onKeyDown($event, option.name)"
+          >
+            {{ option.name }}
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</div>
+
+

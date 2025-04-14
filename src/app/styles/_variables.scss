@@ -1,0 +1,12 @@
+@use 'helpers' as *;
+
+:root {
+  --container-width: #{rem(1200)};
+  --container-padding-x: #{rem(10)};
+
+
+  --font-family-base: 'Times New Roman', sans-serif;
+  --font-family-accent: 'Inter', sans-serif;
+
+  --transition-duration: 0.2s;
+}

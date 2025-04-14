@@ -1,0 +1,53 @@
+@use '../../styles/helpers' as *;
+.select {
+  &__wrapper {
+    position: relative;
+    min-width: rem(100);
+    user-select: none;
+    cursor: pointer;
+    border: rem(1) solid var(--color-accent);
+    border-radius: rem(6);
+    padding: rem(10);
+    background-color: var(--color-accent);
+    color: var(--color-light-100);
+    font-weight: 700;
+
+    &:focus {
+      outline: rem(2) solid var(--color-accent);
+    }
+  }
+  &__display {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(10);
+    align-items: center;
+    font-weight: 500;
+  }
+
+  &__options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    border: rem(1) solid var(--color-accent);
+    background: var(--color-light-100);
+    z-index: 10;
+    border-radius: rem(6);
+    color: var(--color-accent);
+    overflow: hidden;
+  }
+
+  &__option {
+    padding: rem(10);
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--color-light-200);
+    }
+  }
+}
+
+
+
+
+

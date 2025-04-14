@@ -1,0 +1,17 @@
+@use './styles/helpers' as *;
+
+
+.app {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: rem(18);
+    padding: rem(50) 0;
+  }
+
+  &__title {
+    align-self: center;
+  }
+}
+
+
