@@ -1,6 +1,9 @@
 @if (todo(); as todo) {
   <div class="todo">
-
+    <div class="todo__control">
+      <app-edit></app-edit>
+      <app-trash></app-trash>
+    </div>
     <div class="todo__content">
       <app-checkbox [label]="todo.title"></app-checkbox>
       <div class="todo__btn-group">

@@ -4,16 +4,22 @@
   display: flex;
   flex-direction: column;
   gap: rem(15);
+  border: rem(1) solid var(--color-accent);
+  padding: rem(20);
+  border-radius: rem(10);
+  min-width: rem(200);
 
+  &__control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: rem(10);
+  }
 
   &__content {
     display: flex;
     flex-direction: column;
     gap: rem(15);
-    border: rem(1) solid var(--color-accent);
-    padding: rem(20);
-    border-radius: rem(10);
-    min-width: rem(200);
   }
 
   &__btn-group {

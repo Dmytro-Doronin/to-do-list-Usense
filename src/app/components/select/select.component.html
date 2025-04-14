@@ -3,9 +3,9 @@
     <div class="select__display">
       {{ selectedLabel() }}
       @if (isDropdownOpen()) {
-        <span class="arrow" [class.up]="isDropdownOpen()">&and;</span>
+        <app-arrow-up></app-arrow-up>
       } @else {
-        <span class="arrow" [class.up]="isDropdownOpen()">&or;</span>
+        <app-arrow-down></app-arrow-down>
       }
     </div>
 

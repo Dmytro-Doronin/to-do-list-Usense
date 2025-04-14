@@ -1,12 +1,14 @@
 import { Component, computed, ElementRef, HostListener, Input, output, signal } from '@angular/core'
 import { OptionsType } from '../../types/options.types'
+import { ArrowDownComponent } from '../icons/arrow-down/arrow-down.component'
+import { ArrowUpComponent } from '../icons/arrow-up/arrow-up.component'
 
 @Component({
   selector: 'app-select',
   standalone: true,
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
-  imports: [],
+  imports: [ArrowDownComponent, ArrowUpComponent],
 })
 export class SelectComponent {
   @Input() options: OptionsType[] = []
