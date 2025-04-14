@@ -12,4 +12,8 @@ export class TodoApiService {
   getTodos(): Observable<TodoType[]> {
     return this.httpClient.get<TodoType[]>(`/todos`)
   }
+
+  addTodos(title: string) {
+    return this.httpClient.post(`/todos`, { title })
+  }
 }

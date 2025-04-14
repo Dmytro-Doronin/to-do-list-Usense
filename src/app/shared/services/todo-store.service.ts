@@ -2,12 +2,15 @@ import { inject, Injectable, signal } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { TodoTypeWithPriority } from '../../types/todo.types'
 import { TodoApiService } from './todo-api.service'
+import { HttpErrorResponse } from '@angular/common/http'
+import { TodoStorageService } from './todo-storage.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoStoreService {
   todosApiService = inject(TodoApiService)
+  todosLocalService = inject(TodoStorageService)
 
   loadAllTodosSubscription: Subscription | null = null
   allTodos = signal<TodoTypeWithPriority[] | null>(null)
@@ -30,7 +33,7 @@ export class TodoStoreService {
         this.allTodos.set(todosWithPriority)
       },
 
-      error: (error: any) => {
+      error: (error: HttpErrorResponse) => {
         console.log(error)
         this.isLoadingTodos.set(false)
       },

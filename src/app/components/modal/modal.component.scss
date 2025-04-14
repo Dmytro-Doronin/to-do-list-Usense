@@ -19,12 +19,17 @@
 }
 
 .modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: rem(500);
   &__content {
+    display: flex;
+    justify-content: center;
     height: 100%;
+    width: rem(300);
     border-radius: rem(5);
-    padding-block: rem(10);
     z-index: 10;
     transform: scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease;

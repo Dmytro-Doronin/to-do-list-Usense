@@ -6,10 +6,18 @@ import { ButtonComponent } from './components/button/button.component'
 import { PlusComponent } from './components/icons/plus/plus.component'
 import { ModalService } from './shared/services/modal.service'
 import { ModalComponent } from './components/modal/modal.component'
+import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component'
 
 @Component({
   selector: 'app-root',
-  imports: [ControlComponent, TodoListComponent, ButtonComponent, PlusComponent, ModalComponent],
+  imports: [
+    ControlComponent,
+    TodoListComponent,
+    ButtonComponent,
+    PlusComponent,
+    ModalComponent,
+    AddTodoFormComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

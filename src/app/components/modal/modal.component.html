@@ -1,11 +1,12 @@
 @if (getTemplateOptions(); as templateOptions ) {
   <div
     class="modal"
+    #backdrop
     (keydown.escape)="onModalClick($event)"
     (click)="onModalClick($event)"
     tabindex="0"
   >
-    <div class="modal__content container">
+    <div class="modal__content">
       <ng-container
         *ngTemplateOutlet="templateOptions.template; context: templateOptions.context"
       ></ng-container>

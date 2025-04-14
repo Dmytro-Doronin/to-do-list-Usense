@@ -65,3 +65,13 @@ svg {
   margin-inline: auto;
   padding-inline: var(--container-padding-x);
 }
+.error {
+  font-size: rem(14);
+  font-weight: 400;
+  line-height: rem(24);
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: rem(10);
+  color: var(--color-danger-500);
+}
+
