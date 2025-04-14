@@ -2,9 +2,17 @@
 
 .control {
   display: flex;
+  justify-content: center;
   width: 100%;
-  column-gap: rem(10);
   align-items: center;
+
+  &__inner {
+    width: rem(700);
+    align-self: center;
+    display: flex;
+    column-gap: rem(10);
+    align-items: center;
+  }
 
   app-text-field {
     flex: 1;
