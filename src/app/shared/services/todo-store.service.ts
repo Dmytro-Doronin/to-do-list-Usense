@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { TodoTypeWithPriority } from '../../types/todo.types'
+import { EditableTodo, TodoTypeWithPriority } from '../../types/todo.types'
 import { TodoApiService } from './todo-api.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { TodoStorageService } from './todo-storage.service'
@@ -18,9 +18,11 @@ export class TodoStoreService {
 
   loadAllTodosSubscription: Subscription | null = null
   addTodoSubscription: Subscription | null = null
+  editTodoSubscription: Subscription | null = null
   allTodos = signal<TodoTypeWithPriority[]>([])
   isLoadingAllTodos = signal<boolean>(false)
   isLoadingTodos = signal<boolean>(false)
+  editLoadingTodos = signal<boolean>(false)
 
   loadAllTodos() {
     if (this.loadAllTodosSubscription) {
@@ -29,13 +31,14 @@ export class TodoStoreService {
 
     this.isLoadingAllTodos.set(true)
 
+
     this.loadAllTodosSubscription = this.todosApiService.getTodos().subscribe({
       next: () => {
         const storedTodos = this.todosLocalService.load()
         if (storedTodos) {
           const todosWithPriority: TodoTypeWithPriority[] = storedTodos.map(todo => ({
             ...todo,
-            priority: 'low',
+            priority: todo.priority ?? 'low',
           }))
           this.todosLocalService.save(todosWithPriority)
           this.allTodos.set(todosWithPriority)
@@ -89,6 +92,37 @@ export class TodoStoreService {
       complete: () => {
         this.addTodoSubscription = null
         this.isLoadingTodos.set(false)
+      },
+    })
+  }
+
+  editTodo(data: EditableTodo) {
+    if (this.editTodoSubscription) {
+      this.editTodoSubscription.unsubscribe()
+    }
+    this.editLoadingTodos.set(true)
+
+    this.editTodoSubscription = this.todosApiService.editTodos(data).subscribe({
+      next: () => {
+        this.allTodos.update(prev => {
+          const updated = prev.map(todo =>
+            todo.id === data.id ? { ...todo, ...data } : todo
+          )
+          this.todosLocalService.updateTodo(data)
+          return updated
+        });
+
+        this.alertService.onOpenAlert({ message: 'Todo was updated', status: 'success' })
+      },
+
+      error: (error: HttpErrorResponse) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
+        this.editLoadingTodos.set(false)
+      },
+
+      complete: () => {
+        this.addTodoSubscription = null
+        this.editLoadingTodos.set(false)
       },
     })
   }

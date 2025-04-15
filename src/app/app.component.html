@@ -1,14 +1,21 @@
 <main>
   <div class="app">
+    @if (todoEditLoading()) {
+      <app-app-loader></app-app-loader>
+    }
     <div class="container">
       <div class="app__inner">
         <h1 class="app__title">TODO LIST</h1>
         <app-control></app-control>
         @if (todos();as todos) {
-          <app-todo-list [todosLoading]="allTodosLoading()" [todos]="todos"></app-todo-list>
+          <app-todo-list
+            (editTodoFromList)="onEditTodo($event)"
+            [todosLoading]="allTodosLoading()"
+            [todos]="todos"
+          ></app-todo-list
+          >
         }
       </div>
-
       <app-button (click)="openModal(addTodo)" variant="round">
         <app-plus></app-plus>
       </app-button>
@@ -17,7 +24,12 @@
 </main>
 
 <ng-template #addTodo>
-  <app-add-todo-form [isLoading]="todoLoading()" (formSubmitted)="onAddTodo($event)"></app-add-todo-form>
+  <app-todo-form
+    [formTitle]="'Add todo'"
+    [isLoading]="todoLoading()"
+    (formSubmitted)="onAddTodo($event)"
+  >
+  </app-todo-form>
 </ng-template>
 
 <app-modal></app-modal>

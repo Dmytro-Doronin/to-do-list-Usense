@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { TodoType } from '../../types/todo.types'
+import { EditableTodo, TodoType } from '../../types/todo.types'
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,9 @@ export class TodoApiService {
 
   addTodos(title: string) {
     return this.httpClient.post(`/todos`, { title })
+  }
+
+  editTodos(todo: EditableTodo) {
+    return this.httpClient.post(`/todos`, { todo })
   }
 }

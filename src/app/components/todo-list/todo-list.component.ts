@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
 import { TodoComponent } from '../todo/todo.component'
-import { TodoTypeWithPriority } from '../../types/todo.types'
+import { EditableTodo, TodoTypeWithPriority } from '../../types/todo.types'
 import { LoaderComponent } from '../loader/loader.component'
 
 @Component({
@@ -13,4 +13,10 @@ import { LoaderComponent } from '../loader/loader.component'
 export class TodoListComponent {
   todos = input<TodoTypeWithPriority[]>()
   todosLoading = input<boolean>(false)
+  editTodoFromList = output<EditableTodo>()
+
+
+  editTodo (data: EditableTodo) {
+    this.editTodoFromList.emit({...data})
+  }
 }

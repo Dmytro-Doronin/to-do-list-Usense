@@ -1,0 +1,9 @@
+<div class="textarea-container">
+  <ng-content select="[icon]"></ng-content>
+  <textarea
+    [placeholder]="placeholder()"
+    class="textarea"
+    [formControl]="control"
+    [attr.id]="id()"
+    [class.input--error]="isError()"></textarea>
+</div>

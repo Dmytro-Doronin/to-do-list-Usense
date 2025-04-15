@@ -9,6 +9,12 @@
   padding: rem(20);
   width: rem(300);
   min-height: rem(200);
+
+  &--edit {
+    max-width: rem(200);
+    padding: 0;
+    gap: rem(10);
+  }
 }
 
 .form {
@@ -17,4 +23,8 @@
   height: 100%;
   justify-content: space-between;
   row-gap: rem(20);
+
+  &--edit {
+    justify-content: flex-start;
+  }
 }

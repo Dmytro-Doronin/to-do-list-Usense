@@ -1,0 +1,56 @@
+
+<div class="form-wrapper" [class.form-wrapper--edit]="isEditMode()">
+  <h3 class="form-wrapper__title">{{formTitle()}}</h3>
+
+  <form
+    class="form"
+    [formGroup]="cartForm"
+    (ngSubmit)="onSubmit()"
+    [class.form--edit]="isEditMode()"
+  >
+    <div class="form__inputs">
+
+      @if (isEditMode()) {
+        <app-text-area
+          [control]="cartForm.controls.title"
+          [id]="'title'"
+          [placeholder]="'Title'"
+          [isError]="isTitleInvalid()"
+        ></app-text-area>
+      } @else {
+        <app-text-field
+          [control]="cartForm.controls.title"
+          [id]="'title'"
+          [placeholder]="'Title'"
+          [isError]="isTitleInvalid()"
+        >
+        </app-text-field>
+      }
+      @if (isTitleInvalid()) {
+        <div
+          class="error"
+        >
+          @if (title?.errors?.['required']) {
+            <div>Title is required</div>
+          }
+          @if (title?.errors?.['minlength']) {
+            <div>The title must not be less than 3 characters.</div>
+          }
+          @if (title?.errors?.['maxlength']) {
+            <div>The Title must not be more than 50 characters.</div>
+          }
+        </div>
+      }
+    </div>
+    <app-button variant="main">
+      {{buttonTitle()}}
+    </app-button>
+
+    @if (isLoading()) {
+        <div class="block mt0">
+          <app-loader></app-loader>
+        </div>
+    }
+  </form>
+
+</div>
