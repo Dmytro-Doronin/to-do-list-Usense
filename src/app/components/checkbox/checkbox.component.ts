@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+} from '@angular/core'
 import { NgClass } from '@angular/common'
 
 @Component({
@@ -9,9 +17,9 @@ import { NgClass } from '@angular/common'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent {
-  initialValue  = input<boolean>()
-  label  = input<string>('title')
-  isCheckboxChecked = output<{completed: boolean}>()
+  initialValue = input<boolean>()
+  label = input<string>('title')
+  isCheckboxChecked = output<{ completed: boolean }>()
   isChecked = computed(() => this.checked())
   checked = signal(this.initialValue())
 
@@ -22,8 +30,8 @@ export class CheckboxComponent {
   }
 
   toggle() {
-    const newValue = !this.checked();
-    this.checked.set(newValue);
-    this.isCheckboxChecked.emit({ completed: newValue });
+    const newValue = !this.checked()
+    this.checked.set(newValue)
+    this.isCheckboxChecked.emit({ completed: newValue })
   }
 }

@@ -16,9 +16,8 @@ export class TodoListComponent {
   editTodoFromList = output<EditableTodo>()
   deleteTodoFromList = output<number>()
 
-
-  editTodo (data: EditableTodo) {
-    this.editTodoFromList.emit({...data})
+  editTodo(data: EditableTodo) {
+    this.editTodoFromList.emit({ ...data })
   }
 
   deleteTodo(id: number) {

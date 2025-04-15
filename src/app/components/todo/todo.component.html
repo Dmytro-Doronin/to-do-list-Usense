@@ -12,7 +12,7 @@
       @if (isEditTodo()) {
         <div class="todo__edit-block">
           <app-todo-form
-            [isEditMode]='true'
+            [isEditMode]="true"
             [buttonTitle]="'Edit'"
             [formTitle]="'Edit todo'"
             [initialValue]="todo.title"
@@ -30,19 +30,19 @@
 
       <div class="todo__btn-group">
         <app-button
-          (click)="onEditTodo({priority: 'low'})"
+          (click)="onEditTodo({ priority: 'low' })"
           [variant]="todo.priority === 'low' ? 'low' : 'transparent'"
-        >Low
+          >Low
         </app-button>
         <app-button
-          (click)="onEditTodo({priority: 'mid'})"
+          (click)="onEditTodo({ priority: 'mid' })"
           [variant]="todo.priority === 'mid' ? 'mid' : 'transparent'"
-        >Mid
+          >Mid
         </app-button>
         <app-button
-          (click)="onEditTodo({priority: 'high'})"
+          (click)="onEditTodo({ priority: 'high' })"
           [variant]="todo.priority === 'high' ? 'high' : 'transparent'"
-        >High
+          >High
         </app-button>
       </div>
     </div>

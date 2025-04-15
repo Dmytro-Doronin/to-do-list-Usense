@@ -1,7 +1,6 @@
-@if (getTemplateOptions(); as templateOptions ) {
+@if (getTemplateOptions(); as templateOptions) {
   <div
     class="modal"
-    #backdrop
     (keydown.escape)="onModalClick($event)"
     (click)="onModalClick($event)"
     tabindex="0"
@@ -13,5 +12,3 @@
     </div>
   </div>
 }
-
-

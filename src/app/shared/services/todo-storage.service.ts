@@ -12,9 +12,7 @@ export class TodoStorageService {
   updateTodo(updated: EditableTodo) {
     const todos = this.load() ?? []
 
-    const newTodos = todos.map(todo =>
-      todo.id === updated.id ? { ...todo, ...updated } : todo
-    )
+    const newTodos = todos.map(todo => (todo.id === updated.id ? { ...todo, ...updated } : todo))
 
     this.save(newTodos)
   }

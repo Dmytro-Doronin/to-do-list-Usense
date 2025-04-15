@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, input, output, Signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { TextFieldComponent } from '../text-field/text-field.component'
 import { ButtonComponent } from '../button/button.component'
@@ -28,11 +28,11 @@ export class TodoFormComponent {
 
   constructor() {
     effect(() => {
-      const value = this.initialValue();
+      const value = this.initialValue()
       if (value) {
-        this.cartForm.patchValue({ title: value });
+        this.cartForm.patchValue({ title: value })
       }
-    });
+    })
   }
 
   cartForm = new FormGroup({

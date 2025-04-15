@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, input, output, signal } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  input,
+  output,
+  signal,
+} from '@angular/core'
 import { CheckboxComponent } from '../checkbox/checkbox.component'
 import { ButtonComponent } from '../button/button.component'
 import { EditableTodo, EditableTodoWithoutId, TodoTypeWithPriority } from '../../types/todo.types'
@@ -8,13 +16,7 @@ import { TodoFormComponent } from '../todo-form/todo-form.component'
 
 @Component({
   selector: 'app-todo',
-  imports: [
-    CheckboxComponent,
-    ButtonComponent,
-    EditComponent,
-    TrashComponent,
-    TodoFormComponent,
-  ],
+  imports: [CheckboxComponent, ButtonComponent, EditComponent, TrashComponent, TodoFormComponent],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,9 +31,9 @@ export class TodoComponent {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    const clickedInside = this.elRef.nativeElement.contains(event.target);
+    const clickedInside = this.elRef.nativeElement.contains(event.target)
     if (!clickedInside) {
-      this.isEditTodo.set(false);
+      this.isEditTodo.set(false)
     }
   }
 
@@ -40,12 +42,11 @@ export class TodoComponent {
   }
 
   onEditTodo(data: EditableTodoWithoutId) {
-    this.editTodo.emit({id: this.todo()!.id, ...data})
+    this.editTodo.emit({ id: this.todo()!.id, ...data })
     this.isEditTodo.set(false)
   }
 
   onDeleteTodo() {
     this.deleteTodo.emit(this.todo()!.id)
   }
-
 }

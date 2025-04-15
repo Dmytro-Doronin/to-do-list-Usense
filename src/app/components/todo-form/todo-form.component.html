@@ -1,6 +1,5 @@
-
 <div class="form-wrapper" [class.form-wrapper--edit]="isEditMode()">
-  <h3 class="form-wrapper__title">{{formTitle()}}</h3>
+  <h3 class="form-wrapper__title">{{ formTitle() }}</h3>
 
   <form
     class="form"
@@ -9,7 +8,6 @@
     [class.form--edit]="isEditMode()"
   >
     <div class="form__inputs">
-
       @if (isEditMode()) {
         <app-text-area
           [control]="cartForm.controls.title"
@@ -27,9 +25,7 @@
         </app-text-field>
       }
       @if (isTitleInvalid()) {
-        <div
-          class="error"
-        >
+        <div class="error">
           @if (title?.errors?.['required']) {
             <div>Title is required</div>
           }
@@ -43,14 +39,13 @@
       }
     </div>
     <app-button variant="main">
-      {{buttonTitle()}}
+      {{ buttonTitle() }}
     </app-button>
 
     @if (isLoading()) {
-        <div class="block mt0">
-          <app-loader></app-loader>
-        </div>
+      <div class="block mt0">
+        <app-loader></app-loader>
+      </div>
     }
   </form>
-
 </div>

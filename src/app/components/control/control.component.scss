@@ -6,7 +6,6 @@
   width: 100%;
   align-items: center;
 
-
   &__inner {
     width: rem(700);
     align-self: center;
@@ -19,6 +18,15 @@
       align-items: start;
       gap: rem(15);
     }
+  }
+
+  &__select-block {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+
+    color: var(--color-dark);
+    font-size: rem(16);
   }
 
   app-text-field {

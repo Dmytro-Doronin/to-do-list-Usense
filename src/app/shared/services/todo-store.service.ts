@@ -32,7 +32,6 @@ export class TodoStoreService {
 
     this.isLoadingAllTodos.set(true)
 
-
     this.loadAllTodosSubscription = this.todosApiService.getTodos().subscribe({
       next: () => {
         const storedTodos = this.todosLocalService.load()
@@ -40,7 +39,7 @@ export class TodoStoreService {
           const todosWithPriority: TodoTypeWithPriority[] = storedTodos.map(todo => ({
             ...todo,
             priority: todo.priority ?? 'low',
-            completed: todo.completed ?? false
+            completed: todo.completed ?? false,
           }))
           this.todosLocalService.save(todosWithPriority)
           this.allTodos.set(todosWithPriority)
@@ -107,12 +106,10 @@ export class TodoStoreService {
     this.editTodoSubscription = this.todosApiService.editTodos(data).subscribe({
       next: () => {
         this.allTodos.update(prev => {
-          const updated = prev.map(todo =>
-            todo.id === data.id ? { ...todo, ...data } : todo
-          )
+          const updated = prev.map(todo => (todo.id === data.id ? { ...todo, ...data } : todo))
           this.todosLocalService.updateTodo(data)
           return updated
-        });
+        })
 
         this.alertService.onOpenAlert({ message: 'Todo was updated', status: 'success' })
       },
@@ -138,12 +135,10 @@ export class TodoStoreService {
     this.editTodoSubscription = this.todosApiService.deleteTodos(id).subscribe({
       next: () => {
         this.allTodos.update(prev => {
-          const updated = prev.filter(todo =>
-            todo.id !== id
-          )
+          const updated = prev.filter(todo => todo.id !== id)
           this.todosLocalService.save(updated)
           return updated
-        });
+        })
 
         this.alertService.onOpenAlert({ message: 'Todo was deleted', status: 'success' })
       },

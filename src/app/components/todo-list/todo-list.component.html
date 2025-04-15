@@ -2,7 +2,6 @@
   <div class="block">
     <app-loader></app-loader>
   </div>
-
 } @else if ((todos() ?? []).length > 0) {
   <div class="todo-list">
     @for (todo of todos(); track todo.id) {
@@ -16,4 +15,3 @@
 } @else {
   <div class="block">Todo list is empty</div>
 }
-

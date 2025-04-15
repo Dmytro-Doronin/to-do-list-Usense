@@ -1,7 +1,5 @@
 @use '../../styles/helpers' as *;
 
-
-
 .checkbox {
   display: flex;
   align-items: flex-start;
@@ -21,7 +19,6 @@
       outline: rem(2) solid var(--color-accent);
       outline-offset: rem(2);
     }
-
   }
 
   &__box {
@@ -59,8 +56,4 @@
       color: var(--color-light-500);
     }
   }
-
 }
-
-
-

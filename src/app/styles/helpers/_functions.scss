@@ -4,7 +4,7 @@
   @if math.is-unitless($pixel) {
     @return math.div($pixel, 16) + rem;
   } @else {
-    @error 'Dont user (px, rem, or em) after numbers'
+    @error 'Dont user (px, rem, or em) after numbers';
   }
 }
 

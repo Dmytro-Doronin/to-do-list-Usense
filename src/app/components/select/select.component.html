@@ -1,5 +1,10 @@
 <div class="select">
-  <div class="select__wrapper" (click)="toggleDropdown()" tabindex="0" (keydown)="onKeyDownSelect($event)">
+  <div
+    class="select__wrapper"
+    (click)="toggleDropdown()"
+    tabindex="0"
+    (keydown)="onKeyDownSelect($event)"
+  >
     <div class="select__display">
       {{ selectedLabel() }}
       @if (isDropdownOpen()) {
@@ -25,5 +30,3 @@
     }
   </div>
 </div>
-
-

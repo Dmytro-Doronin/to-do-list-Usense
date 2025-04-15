@@ -11,14 +11,13 @@
           (finishedSelect)="onSetFinishedValue($event)"
           (prioritySelect)="onSetPriorityValue($event)"
         ></app-control>
-        @if (filteredTodos();as todos) {
+        @if (filteredTodos(); as todos) {
           <app-todo-list
             (editTodoFromList)="onEditTodo($event)"
             (deleteTodoFromList)="deleteTodo($event)"
             [todosLoading]="allTodosLoading()"
             [todos]="todos"
-          ></app-todo-list
-          >
+          ></app-todo-list>
         }
       </div>
       <app-button (click)="openModal(addTodo)" variant="round">

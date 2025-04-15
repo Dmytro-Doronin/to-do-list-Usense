@@ -3,7 +3,21 @@
     <app-text-field [control]="searchControl" [placeholder]="'Search...'">
       <app-search icon></app-search>
     </app-text-field>
-    <app-select [options]="CheckOptions" (selectedChange)="selectedFinishedSelect($event)"></app-select>
-    <app-select [options]="PriorityOptions" (selectedChange)="selectedPrioritySelect($event)"></app-select>
+    <div class="control__select-block">
+      <label for="completion-select">Sort by completion</label>
+      <app-select
+        id="completion-select"
+        [options]="CheckOptions"
+        (selectedChange)="selectedFinishedSelect($event)"
+      ></app-select>
+    </div>
+    <div class="control__select-block">
+      <label for="priority-select">Sort by priority</label>
+      <app-select
+        id="priority-select"
+        [options]="PriorityOptions"
+        (selectedChange)="selectedPrioritySelect($event)"
+      ></app-select>
+    </div>
   </div>
 </div>
