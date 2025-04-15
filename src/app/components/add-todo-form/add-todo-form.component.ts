@@ -1,16 +1,18 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input, output, Signal } from '@angular/core'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { TextFieldComponent } from '../text-field/text-field.component'
 import { ButtonComponent } from '../button/button.component'
+import { LoaderComponent } from '../loader/loader.component'
 
 @Component({
   selector: 'app-add-todo-form',
-  imports: [ReactiveFormsModule, TextFieldComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, TextFieldComponent, ButtonComponent, LoaderComponent],
   templateUrl: './add-todo-form.component.html',
   styleUrl: './add-todo-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTodoFormComponent {
+  isLoading = input<boolean>(false)
   formSubmitted = output<{ title: string }>()
 
   cartForm = new FormGroup({

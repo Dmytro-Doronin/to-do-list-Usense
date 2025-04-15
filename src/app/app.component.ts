@@ -1,4 +1,4 @@
-import { Component, inject, signal, TemplateRef } from '@angular/core'
+import { Component, inject, Signal, TemplateRef } from '@angular/core'
 import { ControlComponent } from './components/control/control.component'
 import { TodoListComponent } from './components/todo-list/todo-list.component'
 import { TodoStoreService } from './shared/services/todo-store.service'
@@ -7,6 +7,7 @@ import { PlusComponent } from './components/icons/plus/plus.component'
 import { ModalService } from './shared/services/modal.service'
 import { ModalComponent } from './components/modal/modal.component'
 import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component'
+import { AlertComponent } from './components/alert/alert.component'
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
     PlusComponent,
     ModalComponent,
     AddTodoFormComponent,
+    AlertComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -24,6 +26,7 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
 export class AppComponent {
   todoStoreService = inject(TodoStoreService)
   readonly todos = this.todoStoreService.allTodos
+  readonly todoLoading = this.todoStoreService.isLoadingTodos
   readonly allTodosLoading = this.todoStoreService.isLoadingAllTodos
   private readonly modalService = inject(ModalService)
 
@@ -35,13 +38,13 @@ export class AppComponent {
     this.todoStoreService.addTodo(data.title)
   }
 
-  openModal(template: TemplateRef<{ $implicit: null }>) {
+  openModal(template: TemplateRef<{ $implicit: Signal<boolean> }>) {
     if (this.modalService.getModalOptions()) {
       this.modalService.closeModal()
     } else {
       this.modalService.openModal({
         template,
-        context: { $implicit: null },
+        context: { $implicit: this.todoLoading },
       })
     }
   }

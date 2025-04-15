@@ -5,7 +5,7 @@
         <h1 class="app__title">TODO LIST</h1>
         <app-control></app-control>
         @if (todos();as todos) {
-          <app-todo-list [todos]="todos"></app-todo-list>
+          <app-todo-list [todosLoading]="allTodosLoading()" [todos]="todos"></app-todo-list>
         }
       </div>
 
@@ -17,7 +17,9 @@
 </main>
 
 <ng-template #addTodo>
-  <app-add-todo-form (formSubmitted)="onAddTodo($event)"></app-add-todo-form>
+  <app-add-todo-form [isLoading]="todoLoading()" (formSubmitted)="onAddTodo($event)"></app-add-todo-form>
 </ng-template>
 
 <app-modal></app-modal>
+
+<app-alert></app-alert>

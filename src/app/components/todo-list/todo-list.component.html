@@ -1,8 +1,15 @@
-@if (todos(); as todos) {
+@if (todosLoading()) {
+  <div class="block">
+    <app-loader></app-loader>
+  </div>
+
+} @else if ((todos() ?? []).length > 0) {
   <div class="todo-list">
-    @for (todo of todos; track todo.id) {
+    @for (todo of todos(); track todo.id) {
       <app-todo [todo]="todo"></app-todo>
     }
   </div>
+} @else {
+  <div class="block">Todo list is empty</div>
 }
 

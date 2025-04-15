@@ -4,6 +4,8 @@ import { TodoTypeWithPriority } from '../../types/todo.types'
 import { TodoApiService } from './todo-api.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { TodoStorageService } from './todo-storage.service'
+import { AlertService } from './alert.service'
+import { ModalService } from './modal.service'
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,8 @@ import { TodoStorageService } from './todo-storage.service'
 export class TodoStoreService {
   todosApiService = inject(TodoApiService)
   todosLocalService = inject(TodoStorageService)
+  alertService = inject(AlertService)
+  modalService = inject(ModalService)
 
   loadAllTodosSubscription: Subscription | null = null
   addTodoSubscription: Subscription | null = null
@@ -36,17 +40,10 @@ export class TodoStoreService {
           this.todosLocalService.save(todosWithPriority)
           this.allTodos.set(todosWithPriority)
         }
-
-        // const todosWithPriority: TodoTypeWithPriority[] = todos.map(todo => ({
-        //   ...todo,
-        //   priority: 'low',
-        // }))
-        // this.todosLocalService.save(todosWithPriority)
-        // this.allTodos.set(todosWithPriority)
       },
 
       error: (error: HttpErrorResponse) => {
-        console.log(error)
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         this.isLoadingAllTodos.set(false)
       },
 
@@ -79,10 +76,13 @@ export class TodoStoreService {
           this.todosLocalService.save(updated)
           return updated
         })
+
+        this.alertService.onOpenAlert({ message: 'Todo was added', status: 'success' })
+        this.modalService.closeModal()
       },
 
       error: (error: HttpErrorResponse) => {
-        console.log(error)
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
         this.isLoadingTodos.set(false)
       },
 

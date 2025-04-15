@@ -74,4 +74,17 @@ svg {
   margin-top: rem(10);
   color: var(--color-danger-500);
 }
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: rem(100);
 
+  font-size: rem(24);
+  font-weight: 700;
+}
+
+.mt0 {
+  margin-top: 0;
+}

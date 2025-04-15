@@ -8,7 +8,7 @@
       <app-text-field
         [control]="cartForm.controls.title"
         [id]="'title'"
-        [placeholder]="'Name'"
+        [placeholder]="'Title'"
         [isError]="isTitleInvalid()"
       >
       </app-text-field>
@@ -32,6 +32,12 @@
     <app-button variant="main">
       Submit
     </app-button>
+
+    @if (isLoading()) {
+        <div class="block mt0">
+          <app-loader></app-loader>
+        </div>
+    }
   </form>
 
 </div>
