@@ -6,8 +6,8 @@
     <div class="container">
       <div class="app__inner">
         <h1 class="app__title">TODO LIST</h1>
-        <app-control></app-control>
-        @if (todos();as todos) {
+        <app-control (searchTerm)="onSearchTitle($event)"></app-control>
+        @if (filteredTodos();as todos) {
           <app-todo-list
             (editTodoFromList)="onEditTodo($event)"
             (deleteTodoFromList)="deleteTodo($event)"

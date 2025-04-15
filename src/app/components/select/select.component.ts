@@ -35,6 +35,9 @@ export class SelectComponent {
   }
 
   select(name: string) {
+    if (name === this.selectedName()) {
+      return
+    }
     this.selectedName.set(name)
     this.selectedChange.emit(name)
   }

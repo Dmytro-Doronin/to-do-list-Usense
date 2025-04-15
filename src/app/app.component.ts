@@ -1,4 +1,4 @@
-import { Component, inject, Signal, TemplateRef } from '@angular/core'
+import { Component, computed, inject, signal, Signal, TemplateRef } from '@angular/core'
 import { ControlComponent } from './components/control/control.component'
 import { TodoListComponent } from './components/todo-list/todo-list.component'
 import { TodoStoreService } from './shared/services/todo-store.service'
@@ -33,6 +33,16 @@ export class AppComponent {
   readonly allTodosLoading = this.todoStoreService.isLoadingAllTodos
   readonly todoEditLoading = this.todoStoreService.editLoadingTodos
   private readonly modalService = inject(ModalService)
+  searchTerm = signal<string>('')
+
+  readonly filteredTodos = computed(() => {
+    const keyword = this.searchTerm().toLowerCase().trim()
+    const all = this.todos()
+
+    if (!keyword) return all
+
+    return all.filter(todo => todo.title.toLowerCase().includes(keyword))
+  })
 
   constructor() {
     this.todoStoreService.loadAllTodos()
@@ -48,6 +58,10 @@ export class AppComponent {
 
   deleteTodo(id: number) {
     this.todoStoreService.deleteTodo(id)
+  }
+
+  onSearchTitle(title: string) {
+    this.searchTerm.set(title)
   }
 
   openModal(template: TemplateRef<{ $implicit: Signal<boolean> }>) {
