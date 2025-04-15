@@ -1,4 +1,4 @@
-import { Component, inject, TemplateRef } from '@angular/core'
+import { Component, inject, signal, TemplateRef } from '@angular/core'
 import { ControlComponent } from './components/control/control.component'
 import { TodoListComponent } from './components/todo-list/todo-list.component'
 import { TodoStoreService } from './shared/services/todo-store.service'
@@ -24,7 +24,7 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
 export class AppComponent {
   todoStoreService = inject(TodoStoreService)
   readonly todos = this.todoStoreService.allTodos
-  readonly todosLoading = this.todoStoreService.allTodos
+  readonly allTodosLoading = this.todoStoreService.isLoadingAllTodos
   private readonly modalService = inject(ModalService)
 
   constructor() {

@@ -15,6 +15,7 @@ export class TodoStoreService {
   loadAllTodosSubscription: Subscription | null = null
   addTodoSubscription: Subscription | null = null
   allTodos = signal<TodoTypeWithPriority[]>([])
+  isLoadingAllTodos = signal<boolean>(false)
   isLoadingTodos = signal<boolean>(false)
 
   loadAllTodos() {
@@ -22,33 +23,36 @@ export class TodoStoreService {
       this.loadAllTodosSubscription.unsubscribe()
     }
 
-    this.isLoadingTodos.set(true)
-
-    const storedTodos = this.todosLocalService.load()
-    if (storedTodos) {
-      this.allTodos.set(storedTodos)
-      this.isLoadingTodos.set(false)
-      return
-    }
+    this.isLoadingAllTodos.set(true)
 
     this.loadAllTodosSubscription = this.todosApiService.getTodos().subscribe({
-      next: todos => {
-        const todosWithPriority: TodoTypeWithPriority[] = todos.map(todo => ({
-          ...todo,
-          priority: 'low',
-        }))
-        this.todosLocalService.save(todosWithPriority)
-        this.allTodos.set(todosWithPriority)
+      next: () => {
+        const storedTodos = this.todosLocalService.load()
+        if (storedTodos) {
+          const todosWithPriority: TodoTypeWithPriority[] = storedTodos.map(todo => ({
+            ...todo,
+            priority: 'low',
+          }))
+          this.todosLocalService.save(todosWithPriority)
+          this.allTodos.set(todosWithPriority)
+        }
+
+        // const todosWithPriority: TodoTypeWithPriority[] = todos.map(todo => ({
+        //   ...todo,
+        //   priority: 'low',
+        // }))
+        // this.todosLocalService.save(todosWithPriority)
+        // this.allTodos.set(todosWithPriority)
       },
 
       error: (error: HttpErrorResponse) => {
         console.log(error)
-        this.isLoadingTodos.set(false)
+        this.isLoadingAllTodos.set(false)
       },
 
       complete: () => {
         this.loadAllTodosSubscription = null
-        this.isLoadingTodos.set(false)
+        this.isLoadingAllTodos.set(false)
       },
     })
   }
