@@ -3,7 +3,7 @@
     <app-text-field [control]="searchControl" [placeholder]="'Search...'">
       <app-search icon></app-search>
     </app-text-field>
-    <app-select [options]="CheckOptions" (selectedChange)="selectedOptionSelected($event)"></app-select>
-    <app-select [options]="PriorityOptions" (selectedChange)="selectedOptionSelected($event)"></app-select>
+    <app-select [options]="CheckOptions" (selectedChange)="selectedFinishedSelect($event)"></app-select>
+    <app-select [options]="PriorityOptions" (selectedChange)="selectedPrioritySelect($event)"></app-select>
   </div>
 </div>

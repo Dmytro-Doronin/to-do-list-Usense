@@ -8,7 +8,13 @@ import { ModalService } from './shared/services/modal.service'
 import { ModalComponent } from './components/modal/modal.component'
 import { TodoFormComponent } from './components/todo-form/todo-form.component'
 import { AlertComponent } from './components/alert/alert.component'
-import { EditableTodo } from './types/todo.types'
+import {
+  EditableTodo,
+  FinishedSortedTypeType,
+  PriorityFilterType,
+  PriorityType,
+  TodoTypeWithPriority,
+} from './types/todo.types'
 import { AppLoaderComponent } from './components/app-loader/app-loader.component'
 
 @Component({
@@ -27,21 +33,36 @@ import { AppLoaderComponent } from './components/app-loader/app-loader.component
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  todoStoreService = inject(TodoStoreService)
+  private readonly todoStoreService = inject(TodoStoreService)
+  private readonly modalService = inject(ModalService)
   readonly todos = this.todoStoreService.allTodos
   readonly todoLoading = this.todoStoreService.isLoadingTodos
   readonly allTodosLoading = this.todoStoreService.isLoadingAllTodos
   readonly todoEditLoading = this.todoStoreService.editLoadingTodos
-  private readonly modalService = inject(ModalService)
   searchTerm = signal<string>('')
+  finishedSorted = signal<FinishedSortedTypeType>('All')
+  prioritySorted = signal<PriorityFilterType>('All')
 
   readonly filteredTodos = computed(() => {
     const keyword = this.searchTerm().toLowerCase().trim()
+    const finished = this.finishedSorted()
+    const priority = this.prioritySorted()
     const all = this.todos()
 
-    if (!keyword) return all
+    const matchesFinished = (todo: TodoTypeWithPriority) =>
+      finished === 'All' ||
+      (finished === 'Complete' && todo.completed) ||
+      (finished === 'Incomplete' && !todo.completed)
 
-    return all.filter(todo => todo.title.toLowerCase().includes(keyword))
+    const matchesPriority = (todo: TodoTypeWithPriority) =>
+      priority === 'All' || todo.priority.toLowerCase() === priority.toLowerCase()
+
+    const matchesKeyword = (todo: TodoTypeWithPriority) =>
+      todo.title.toLowerCase().includes(keyword)
+
+    return all.filter(
+      todo => matchesKeyword(todo) && matchesFinished(todo) && matchesPriority(todo)
+    )
   })
 
   constructor() {
@@ -64,13 +85,21 @@ export class AppComponent {
     this.searchTerm.set(title)
   }
 
-  openModal(template: TemplateRef<{ $implicit: Signal<boolean> }>) {
+  onSetFinishedValue(title: FinishedSortedTypeType) {
+    this.finishedSorted.set(title)
+  }
+
+  onSetPriorityValue(title: PriorityFilterType) {
+    this.prioritySorted.set(title)
+  }
+
+  openModal(template: TemplateRef<{ $implicit: null }>) {
     if (this.modalService.getModalOptions()) {
       this.modalService.closeModal()
     } else {
       this.modalService.openModal({
         template,
-        context: { $implicit: this.todoLoading },
+        context: { $implicit: null },
       })
     }
   }

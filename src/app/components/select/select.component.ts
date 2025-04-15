@@ -1,7 +1,7 @@
-import { Component, computed, ElementRef, HostListener, Input, output, signal } from '@angular/core'
-import { OptionsType } from '../../types/options.types'
+import { Component, computed, ElementRef, HostListener, input, output, signal } from '@angular/core'
 import { ArrowDownComponent } from '../icons/arrow-down/arrow-down.component'
 import { ArrowUpComponent } from '../icons/arrow-up/arrow-up.component'
+import { optionsType } from '../../types/options.types'
 
 @Component({
   selector: 'app-select',
@@ -11,8 +11,7 @@ import { ArrowUpComponent } from '../icons/arrow-up/arrow-up.component'
   imports: [ArrowDownComponent, ArrowUpComponent],
 })
 export class SelectComponent {
-  @Input() options: OptionsType[] = []
-
+  options = input<optionsType[]>([])
   private selectedName = signal<string>('All')
   private isOpen = signal<boolean>(false)
   selectedChange = output<string>()

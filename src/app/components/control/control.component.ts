@@ -6,6 +6,7 @@ import { SearchComponent } from '../icons/search/search.component'
 import { FormControl } from '@angular/forms'
 import { debounceTime, distinctUntilChanged } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { FinishedSortedTypeType, PriorityFilterType } from '../../types/todo.types'
 
 @Component({
   selector: 'app-control',
@@ -18,8 +19,11 @@ export class ControlComponent {
   protected readonly CheckOptions = CheckOptions
   protected readonly PriorityOptions = PriorityOptions
 
-  completeOptionSelected = signal<string>('All')
+  completeFinishedSelect = signal<FinishedSortedTypeType>('All')
+  completePrioritySelect = signal<PriorityFilterType>('All')
   searchTerm = output<string>()
+  finishedSelect = output<FinishedSortedTypeType>()
+  prioritySelect = output<PriorityFilterType>()
 
   searchControl = new FormControl('')
 
@@ -31,8 +35,13 @@ export class ControlComponent {
       })
   }
 
-  selectedOptionSelected(id: string) {
-    this.completeOptionSelected.set(id)
-    console.log(id)
+  selectedFinishedSelect(title: string) {
+    this.completeFinishedSelect.set(title as FinishedSortedTypeType)
+    this.finishedSelect.emit(title as FinishedSortedTypeType)
+  }
+
+  selectedPrioritySelect(title: string) {
+    this.completePrioritySelect.set(title as PriorityFilterType)
+    this.prioritySelect.emit(title as PriorityFilterType)
   }
 }
