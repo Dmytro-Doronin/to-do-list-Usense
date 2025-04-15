@@ -46,6 +46,10 @@ export class AppComponent {
     this.todoStoreService.editTodo(data)
   }
 
+  deleteTodo(id: number) {
+    this.todoStoreService.deleteTodo(id)
+  }
+
   openModal(template: TemplateRef<{ $implicit: Signal<boolean> }>) {
     if (this.modalService.getModalOptions()) {
       this.modalService.closeModal()

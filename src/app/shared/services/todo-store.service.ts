@@ -19,6 +19,7 @@ export class TodoStoreService {
   loadAllTodosSubscription: Subscription | null = null
   addTodoSubscription: Subscription | null = null
   editTodoSubscription: Subscription | null = null
+  deleteTodoSubscription: Subscription | null = null
   allTodos = signal<TodoTypeWithPriority[]>([])
   isLoadingAllTodos = signal<boolean>(false)
   isLoadingTodos = signal<boolean>(false)
@@ -39,6 +40,7 @@ export class TodoStoreService {
           const todosWithPriority: TodoTypeWithPriority[] = storedTodos.map(todo => ({
             ...todo,
             priority: todo.priority ?? 'low',
+            completed: todo.completed ?? false
           }))
           this.todosLocalService.save(todosWithPriority)
           this.allTodos.set(todosWithPriority)
@@ -113,6 +115,37 @@ export class TodoStoreService {
         });
 
         this.alertService.onOpenAlert({ message: 'Todo was updated', status: 'success' })
+      },
+
+      error: (error: HttpErrorResponse) => {
+        this.alertService.onOpenAlert({ message: error.message, status: 'error' })
+        this.editLoadingTodos.set(false)
+      },
+
+      complete: () => {
+        this.addTodoSubscription = null
+        this.editLoadingTodos.set(false)
+      },
+    })
+  }
+
+  deleteTodo(id: number) {
+    if (this.deleteTodoSubscription) {
+      this.deleteTodoSubscription.unsubscribe()
+    }
+    this.editLoadingTodos.set(true)
+
+    this.editTodoSubscription = this.todosApiService.deleteTodos(id).subscribe({
+      next: () => {
+        this.allTodos.update(prev => {
+          const updated = prev.filter(todo =>
+            todo.id !== id
+          )
+          this.todosLocalService.save(updated)
+          return updated
+        });
+
+        this.alertService.onOpenAlert({ message: 'Todo was deleted', status: 'success' })
       },
 
       error: (error: HttpErrorResponse) => {

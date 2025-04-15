@@ -10,6 +10,7 @@
         @if (todos();as todos) {
           <app-todo-list
             (editTodoFromList)="onEditTodo($event)"
+            (deleteTodoFromList)="deleteTodo($event)"
             [todosLoading]="allTodosLoading()"
             [todos]="todos"
           ></app-todo-list

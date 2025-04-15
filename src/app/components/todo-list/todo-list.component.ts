@@ -14,9 +14,14 @@ export class TodoListComponent {
   todos = input<TodoTypeWithPriority[]>()
   todosLoading = input<boolean>(false)
   editTodoFromList = output<EditableTodo>()
+  deleteTodoFromList = output<number>()
 
 
   editTodo (data: EditableTodo) {
     this.editTodoFromList.emit({...data})
+  }
+
+  deleteTodo(id: number) {
+    this.deleteTodoFromList.emit(id)
   }
 }

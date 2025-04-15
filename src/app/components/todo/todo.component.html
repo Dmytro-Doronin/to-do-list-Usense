@@ -4,7 +4,7 @@
       <app-button (click)="onEditTodoMode()" [variant]="'invisible'">
         <app-edit></app-edit>
       </app-button>
-      <app-button [variant]="'invisible'">
+      <app-button (click)="onDeleteTodo()" [variant]="'invisible'">
         <app-trash></app-trash>
       </app-button>
     </div>
@@ -21,7 +21,11 @@
           </app-todo-form>
         </div>
       } @else {
-        <app-checkbox [label]="todo.title"></app-checkbox>
+        <app-checkbox
+          [initialValue]="todo.completed"
+          (isCheckboxChecked)="onEditTodo($event)"
+          [label]="todo.title"
+        ></app-checkbox>
       }
 
       <div class="todo__btn-group">

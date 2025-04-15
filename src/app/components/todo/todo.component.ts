@@ -23,6 +23,7 @@ export class TodoComponent {
   todo = input<TodoTypeWithPriority>()
   isEditTodo = signal<boolean>(false)
   editTodo = output<EditableTodo>()
+  deleteTodo = output<number>()
 
   constructor(private elRef: ElementRef) {}
 
@@ -41,6 +42,10 @@ export class TodoComponent {
   onEditTodo(data: EditableTodoWithoutId) {
     this.editTodo.emit({id: this.todo()!.id, ...data})
     this.isEditTodo.set(false)
+  }
+
+  onDeleteTodo() {
+    this.deleteTodo.emit(this.todo()!.id)
   }
 
 }

@@ -6,5 +6,5 @@
     (change)="toggle()"
   />
   <span class="checkbox__box" [ngClass]="{ checked: isChecked() }"></span>
-  <span class="checkbox__label-text" [ngClass]="{ crossed: isChecked() }">{{ label }}</span>
+  <span class="checkbox__label-text" [ngClass]="{ crossed: isChecked() }">{{ label() }}</span>
 </label>

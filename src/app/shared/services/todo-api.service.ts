@@ -20,4 +20,8 @@ export class TodoApiService {
   editTodos(todo: EditableTodo) {
     return this.httpClient.post(`/todos`, { todo })
   }
+
+  deleteTodos(id: number) {
+    return this.httpClient.delete(`/todos/${id}`)
+  }
 }

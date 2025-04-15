@@ -6,7 +6,11 @@
 } @else if ((todos() ?? []).length > 0) {
   <div class="todo-list">
     @for (todo of todos(); track todo.id) {
-      <app-todo (editTodo)="editTodo($event)" [todo]="todo"></app-todo>
+      <app-todo
+        (deleteTodo)="deleteTodo($event)"
+        (editTodo)="editTodo($event)"
+        [todo]="todo"
+      ></app-todo>
     }
   </div>
 } @else {
