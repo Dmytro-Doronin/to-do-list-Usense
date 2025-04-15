@@ -40,6 +40,11 @@ Create a web app that allows users to manage a list of tasks.
 - Data is not persisted on the server; therefore, all todos are stored locally.
 - Pagination was **not implemented**, as it was not part of the test task description. However, it can be easily added if needed.
 
+## 🚀 Demo
+
+Check out the live demo here:  
+👉 [to-do-list-usense.vercel.app](https://to-do-list-usense.vercel.app)
+
 ## 🚀 How to Run
 
 ```bash
