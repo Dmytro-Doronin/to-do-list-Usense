@@ -6,12 +6,19 @@
   width: 100%;
   align-items: center;
 
+
   &__inner {
     width: rem(700);
     align-self: center;
     display: flex;
     column-gap: rem(10);
     align-items: center;
+
+    @include mobile {
+      flex-direction: column-reverse;
+      align-items: start;
+      gap: rem(15);
+    }
   }
 
   app-text-field {

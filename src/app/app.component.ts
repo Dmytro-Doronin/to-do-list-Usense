@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, Signal, TemplateRef } from '@angular/core'
+import { Component, computed, inject, signal, TemplateRef } from '@angular/core'
 import { ControlComponent } from './components/control/control.component'
 import { TodoListComponent } from './components/todo-list/todo-list.component'
 import { TodoStoreService } from './shared/services/todo-store.service'
@@ -12,7 +12,6 @@ import {
   EditableTodo,
   FinishedSortedTypeType,
   PriorityFilterType,
-  PriorityType,
   TodoTypeWithPriority,
 } from './types/todo.types'
 import { AppLoaderComponent } from './components/app-loader/app-loader.component'
